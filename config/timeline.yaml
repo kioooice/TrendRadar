@@ -505,6 +505,45 @@ custom:
       report_mode: "daily"         # 当日全部新闻汇总
       # once 继承 default（analyze: true, push: true）→ 只分析/推送一次
 
+    # 早上 9 点推送
+    morning_push:
+      name: "早间推送"
+      start: "09:00"
+      end: "09:30"
+      analyze: true
+      ai_mode: "current"
+      push: true
+      report_mode: "current"
+      once:
+        analyze: true
+        push: true
+
+    # 下午 4 点推送
+    afternoon_push:
+      name: "下午推送"
+      start: "16:00"
+      end: "16:30"
+      analyze: true
+      ai_mode: "current"
+      push: true
+      report_mode: "current"
+      once:
+        analyze: true
+        push: true
+
+    # 晚上 10 点汇总
+    night_summary:
+      name: "晚间汇总"
+      start: "22:00"
+      end: "22:30"
+      analyze: true
+      ai_mode: "daily"
+      push: true
+      report_mode: "daily"
+      once:
+        analyze: true
+        push: true
+
 
   # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   # 第 2 步：把积木块拼成日计划
@@ -514,10 +553,8 @@ custom:
   # 然后在第 3 步的 week_map 中分配给不同的星期。
   # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   day_plans:
-    workday:                       # 工作日计划
-      periods: ["deep_quiet", "weekday_morning", "evening_summary"]
-    weekend:                       # 周末计划（用 weekend_morning 替换 weekday_morning）
-      periods: ["deep_quiet", "weekend_morning", "evening_summary"]
+    all_day:
+      periods: ["morning_push", "afternoon_push", "night_summary"]
 
 
   # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -526,13 +563,13 @@ custom:
   # 1=周一  2=周二  3=周三  4=周四  5=周五  6=周六  7=周日
   # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   week_map:
-    1: "workday"                   # 周一 → 工作日计划
-    2: "workday"                   # 周二
-    3: "workday"                   # 周三
-    4: "workday"                   # 周四
-    5: "workday"                   # 周五
-    6: "weekend"                   # 周六 → 周末计划
-    7: "weekend"                   # 周日
+    1: "all_day"
+    2: "all_day"
+    3: "all_day"
+    4: "all_day"
+    5: "all_day"
+    6: "all_day"
+    7: "all_day"
 
 
   # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
